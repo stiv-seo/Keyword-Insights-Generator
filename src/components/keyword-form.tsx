@@ -25,12 +25,33 @@ const contentTypes = [
 
 type ContentTypeValue = (typeof contentTypes)[number]['value'];
 
+const countries = [
+  { value: "global", label: "Global" },
+  { value: "es", label: "España" },
+  { value: "mx", label: "México" },
+  { value: "ar", label: "Argentina" },
+  { value: "co", label: "Colombia" },
+  { value: "us", label: "Estados Unidos" },
+  { value: "gb", label: "Reino Unido" },
+  { value: "fr", label: "Francia" },
+  { value: "de", label: "Alemania" },
+  { value: "it", label: "Italia" },
+  { value: "br", label: "Brasil" },
+  { value: "ca", label: "Canadá" },
+  { value: "au", label: "Australia" },
+] as const;
+
+type CountryValue = (typeof countries)[number]['value'];
+
 const formSchema = z.object({
   seedKeyword: z.string().min(2, { message: "La palabra clave raíz debe tener al menos 2 caracteres." }),
   contentType: z.enum(contentTypes.map(ct => ct.value) as [ContentTypeValue, ...ContentTypeValue[]], {
     errorMap: () => ({ message: "Por favor selecciona un tipo de contenido." }),
   }),
   websiteType: z.string().min(2, { message: "El tipo de sitio web debe tener al menos 2 caracteres." }),
+  country: z.enum(countries.map(c => c.value) as [CountryValue, ...CountryValue[]], {
+    errorMap: () => ({ message: "Por favor selecciona un país." }),
+  }),
 });
 
 type KeywordFormData = z.infer<typeof formSchema>;
@@ -46,6 +67,7 @@ export function KeywordForm() {
       seedKeyword: "",
       contentType: undefined,
       websiteType: "",
+      country: "global",
     },
   });
 
@@ -127,6 +149,32 @@ export function KeywordForm() {
                       <Input placeholder="ej., 'blog SaaS', 'e-commerce de moda', 'panadería local'" {...field} className="text-base"/>
                     </FormControl>
                     <FormDescription>Describe el enfoque o industria de tu sitio web.</FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="country"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="font-semibold">País</FormLabel>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger className="text-base">
+                          <SelectValue placeholder="Selecciona un país" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {countries.map((country) => (
+                          <SelectItem key={country.value} value={country.value} className="text-base">
+                            {country.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormDescription>Selecciona el país para el análisis SEO (volumen de búsqueda y dificultad).</FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
