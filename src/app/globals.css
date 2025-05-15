@@ -13,7 +13,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 3.9%;
 
-    --primary: 233 64.3% 29.6%; /* Dark Blue #1A237E */
+    --primary: 262 67% 48%; /* New Purple #6429cd */
     --primary-foreground: 0 0% 98%; /* White text on primary */
 
     --secondary: 0 0% 96.1%; /* Default shadcn light gray for secondary elements */
@@ -22,7 +22,7 @@
     --muted: 0 0% 96.1%; /* Default shadcn muted */
     --muted-foreground: 0 0% 45.1%; /* Default shadcn muted-foreground */
 
-    --accent: 187 100% 41.6%; /* Teal #00BCD4 */
+    --accent: 262 67% 48%; /* New Purple #6429cd */
     --accent-foreground: 0 0% 98%; /* White text on accent for interactive elements */
 
     --destructive: 0 84.2% 60.2%;
@@ -30,7 +30,7 @@
 
     --border: 0 0% 87%; /* Border color, e.g. for cards, inputs. #DADADA approx. */
     --input: 0 0% 87%; /* Input border */
-    --ring: 187 100% 41.6%; /* Accent color for focus rings */
+    --ring: 262 67% 48%; /* New Purple for focus rings */
     --radius: 0.5rem;
 
     --chart-1: 12 76% 61%;
@@ -41,12 +41,12 @@
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-primary: 262 67% 48%; /* New Purple */
+    --sidebar-primary-foreground: 0 0% 98%; /* White text */
+    --sidebar-accent: 262 67% 95%; /* Very light purple */
+    --sidebar-accent-foreground: 262 67% 30%; /* Darker purple text */
     --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-ring: 262 67% 48%; /* New Purple */
   }
 
   .dark {
@@ -56,19 +56,19 @@
     --card-foreground: 0 0% 98%;
     --popover: 240 10% 3.9%;
     --popover-foreground: 0 0% 98%;
-    --primary: 187 100% 41.6%; /* Teal as primary in dark */
-    --primary-foreground: 0 0% 9%; /* Dark text on Teal */
+    --primary: 262 67% 48%; /* New Purple */
+    --primary-foreground: 0 0% 98%; /* White text */
     --secondary: 240 3.7% 15.9%;
     --secondary-foreground: 0 0% 98%;
     --muted: 240 3.7% 15.9%;
     --muted-foreground: 0 0% 63.9%;
-    --accent: 233 64.3% 45%; /* Lighter variant of dark blue for accent */
-    --accent-foreground: 0 0% 98%;
+    --accent: 262 67% 60%; /* Lighter Purple */
+    --accent-foreground: 0 0% 98%; /* White text */
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
-    --ring: 187 100% 41.6%; /* Teal for rings */
+    --ring: 262 67% 48%; /* New Purple */
     
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
@@ -78,12 +78,12 @@
 
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 187 100% 41.6%; /* Teal for sidebar primary */
-    --sidebar-primary-foreground: 240 5.9% 10%; /* Dark text */
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 262 67% 60%; /* Lighter Purple for sidebar primary */
+    --sidebar-primary-foreground: 0 0% 98%; /* White text */
+    --sidebar-accent: 260 20% 15%; /* Slightly purplish dark gray */
+    --sidebar-accent-foreground: 262 67% 85%; /* Light purple text */
     --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 187 100% 41.6%; /* Teal for sidebar ring */
+    --sidebar-ring: 262 67% 60%; /* Lighter Purple for sidebar ring */
   }
 }
 

@@ -18,19 +18,19 @@ import { Loader2, AlertCircle } from "lucide-react";
 import { KeywordClusterDisplay } from "./keyword-cluster-display";
 
 const contentTypes = [
-  { value: "article", label: "Article" },
-  { value: "internal page", label: "Internal Page" },
-  { value: "landing page", label: "Landing Page" },
+  { value: "article", label: "Artículo" },
+  { value: "internal page", label: "Página Interna" },
+  { value: "landing page", label: "Página de Destino" },
 ] as const;
 
 type ContentTypeValue = (typeof contentTypes)[number]['value'];
 
 const formSchema = z.object({
-  seedKeyword: z.string().min(2, { message: "Seed keyword must be at least 2 characters." }),
+  seedKeyword: z.string().min(2, { message: "La palabra clave raíz debe tener al menos 2 caracteres." }),
   contentType: z.enum(contentTypes.map(ct => ct.value) as [ContentTypeValue, ...ContentTypeValue[]], {
-    errorMap: () => ({ message: "Please select a content type." }),
+    errorMap: () => ({ message: "Por favor selecciona un tipo de contenido." }),
   }),
-  websiteType: z.string().min(2, { message: "Website type must be at least 2 characters." }),
+  websiteType: z.string().min(2, { message: "El tipo de sitio web debe tener al menos 2 caracteres." }),
 });
 
 type KeywordFormData = z.infer<typeof formSchema>;
@@ -68,9 +68,9 @@ export function KeywordForm() {
     <div className="max-w-2xl mx-auto">
       <Card className="shadow-xl">
         <CardHeader>
-          <CardTitle className="text-3xl text-primary">Find Your Keywords</CardTitle>
+          <CardTitle className="text-3xl text-primary">Encuentra Tus Palabras Clave</CardTitle>
           <CardDescription className="text-md">
-            Enter your seed keyword and website details to generate a comprehensive keyword cluster.
+            Ingresa tu palabra clave raíz y los detalles de tu sitio web para generar un grupo completo de palabras clave.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -81,11 +81,11 @@ export function KeywordForm() {
                 name="seedKeyword"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="font-semibold">Seed Keyword</FormLabel>
+                    <FormLabel className="font-semibold">Palabra Clave Raíz</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., 'content marketing strategies'" {...field} className="text-base"/>
+                      <Input placeholder="ej., 'estrategias de marketing de contenidos'" {...field} className="text-base"/>
                     </FormControl>
-                    <FormDescription>The main topic or keyword you want to explore.</FormDescription>
+                    <FormDescription>El tema principal o palabra clave que quieres explorar.</FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -96,11 +96,11 @@ export function KeywordForm() {
                 name="contentType"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="font-semibold">Content Type</FormLabel>
+                    <FormLabel className="font-semibold">Tipo de Contenido</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger className="text-base">
-                          <SelectValue placeholder="Select content type" />
+                          <SelectValue placeholder="Selecciona el tipo de contenido" />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -111,7 +111,7 @@ export function KeywordForm() {
                         ))}
                       </SelectContent>
                     </Select>
-                    <FormDescription>Specify the type of content you're planning.</FormDescription>
+                    <FormDescription>Especifica el tipo de contenido que estás planeando.</FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -122,11 +122,11 @@ export function KeywordForm() {
                 name="websiteType"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="font-semibold">Website Type / Niche</FormLabel>
+                    <FormLabel className="font-semibold">Tipo de Sitio Web / Nicho</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., 'SaaS blog', 'e-commerce fashion', 'local bakery'" {...field} className="text-base"/>
+                      <Input placeholder="ej., 'blog SaaS', 'e-commerce de moda', 'panadería local'" {...field} className="text-base"/>
                     </FormControl>
-                    <FormDescription>Describe your website's focus or industry.</FormDescription>
+                    <FormDescription>Describe el enfoque o industria de tu sitio web.</FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -135,10 +135,10 @@ export function KeywordForm() {
                 {isLoading ? (
                   <>
                     <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                    Generating...
+                    Generando...
                   </>
                 ) : (
-                  "Generate Keyword Cluster"
+                  "Generar Grupo de Palabras Clave"
                 )}
               </Button>
             </form>

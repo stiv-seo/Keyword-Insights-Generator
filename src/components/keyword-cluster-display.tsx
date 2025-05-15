@@ -28,7 +28,7 @@ const KeywordSection: React.FC<KeywordSectionProps> = ({ title, keywords, icon: 
           </div>
         </AccordionTrigger>
         <AccordionContent>
-          <p className="text-muted-foreground p-4">No keywords found for this category.</p>
+          <p className="text-muted-foreground p-4">No se encontraron palabras clave para esta categoría.</p>
         </AccordionContent>
       </AccordionItem>
     );
@@ -46,9 +46,9 @@ const KeywordSection: React.FC<KeywordSectionProps> = ({ title, keywords, icon: 
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead className="font-semibold">Keyword</TableHead>
-              <TableHead className="text-right font-semibold">Search Volume</TableHead>
-              <TableHead className="text-right font-semibold">Ranking Difficulty</TableHead>
+              <TableHead className="font-semibold">Palabra Clave</TableHead>
+              <TableHead className="text-right font-semibold">Volumen de Búsqueda</TableHead>
+              <TableHead className="text-right font-semibold">Dificultad de Ranking</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -70,13 +70,13 @@ export function KeywordClusterDisplay({ clusterData }: KeywordClusterDisplayProp
   return (
     <Card className="mt-8 shadow-xl">
       <CardHeader>
-        <CardTitle className="text-2xl text-primary">Keyword Cluster Results</CardTitle>
+        <CardTitle className="text-2xl text-primary">Resultados del Grupo de Palabras Clave</CardTitle>
       </CardHeader>
       <CardContent>
         <Accordion type="multiple" className="w-full">
-          <KeywordSection title="Related Keywords" keywords={clusterData.relatedKeywords} icon={Network} />
-          <KeywordSection title="Semantic Keywords" keywords={clusterData.semanticKeywords} icon={Brain} />
-          <KeywordSection title="Phrase Match Keywords" keywords={clusterData.phraseMatchKeywords} icon={SearchCheck} />
+          <KeywordSection title="Palabras Clave Relacionadas" keywords={clusterData.relatedKeywords} icon={Network} />
+          <KeywordSection title="Palabras Clave Semánticas" keywords={clusterData.semanticKeywords} icon={Brain} />
+          <KeywordSection title="Palabras Clave de Concordancia de Frase" keywords={clusterData.phraseMatchKeywords} icon={SearchCheck} />
         </Accordion>
       </CardContent>
     </Card>

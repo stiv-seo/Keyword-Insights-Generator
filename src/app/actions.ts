@@ -7,9 +7,9 @@ import { z } from "zod";
 const ContentTypeEnum = z.enum(['article', 'internal page', 'landing page']);
 
 const ActionInputSchema = z.object({
-  seedKeyword: z.string().min(1, "Seed keyword is required."),
-  contentType: ContentTypeEnum,
-  websiteType: z.string().min(1, "Website type is required."),
+  seedKeyword: z.string().min(1, "La palabra clave raíz es requerida."),
+  contentType: ContentTypeEnum, // Validation message for this comes from formSchema if parsed there first
+  websiteType: z.string().min(1, "El tipo de sitio web es requerido."),
 });
 
 export async function generateKeywordsAction(
@@ -21,13 +21,15 @@ export async function generateKeywordsAction(
     if (result) {
       return { success: true, data: result };
     } else {
-      return { success: false, error: "Failed to generate keywords. The AI model did not return a result." };
+      return { success: false, error: "Error al generar palabras clave. El modelo de IA no devolvió un resultado." };
     }
   } catch (error) {
     if (error instanceof z.ZodError) {
+      // Assuming formSchema messages are already translated in the component
+      // If ActionInputSchema is used directly without prior form validation, its messages apply.
       return { success: false, error: error.errors.map(e => e.message).join(", ") };
     }
     console.error("Error generating keyword cluster:", error);
-    return { success: false, error: "An unexpected error occurred while generating keywords." };
+    return { success: false, error: "Ocurrió un error inesperado al generar palabras clave." };
   }
 }

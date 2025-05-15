@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Keyword Insights Generator',
-  description: 'Generate keyword clusters for SEO content strategy.',
+  title: 'Generador de Estadísticas de Palabras Clave',
+  description: 'Genera grupos de palabras clave para estrategias de contenido SEO.',
 };
 
 export default function RootLayout({
@@ -24,7 +24,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="es" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
         <Toaster />
