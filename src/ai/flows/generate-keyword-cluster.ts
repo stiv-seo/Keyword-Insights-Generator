@@ -62,8 +62,6 @@ const getKeywordMetricsTool = ai.defineTool(
     outputSchema: z.custom<KeywordMetrics | null>(),
   },
   async ({keyword, countryCode}) => {
-    // Aquí es donde llamarías a tu función real que interactúa con Google Keyword Planner API
-    // Por ahora, usa la función stub del servicio.
     return await fetchKeywordMetrics(keyword, countryCode);
   }
 );
@@ -80,8 +78,6 @@ const getKeywordTrendTool = ai.defineTool(
     outputSchema: z.custom<KeywordTrend | null>(),
   },
   async ({keyword, countryCode}) => {
-    // Aquí es donde llamarías a tu función real que interactúa con Google Trends API (o similar)
-    // Por ahora, usa la función stub del servicio.
     return await fetchKeywordTrend(keyword, countryCode);
   }
 );
@@ -104,7 +100,7 @@ País para análisis SEO: {{{country}}}
 
 Instrucciones:
 1. Identifica tres categorías de palabras clave: 'Palabras Clave Relacionadas', 'Palabras Clave Semánticas' y 'Palabras Clave de Concordancia de Frase'.
-2. Para cada categoría, genera una lista de palabras clave relevantes.
+2. Para cada categoría, genera una lista de **aproximadamente 10** palabras clave relevantes. Si no encuentras 10 buenas opciones, genera tantas como consideres de alta calidad.
 3. Para CADA palabra clave generada:
     a. Utiliza la herramienta 'getKeywordMetrics' para obtener su volumen de búsqueda mensual y dificultad de posicionamiento para el país '{{{country}}}'. Si la herramienta no devuelve datos para una palabra clave, puedes estimar estos valores basándote en tu conocimiento, pero prioriza el uso de la herramienta. Si estimas, indica que son estimaciones.
     b. Utiliza la herramienta 'getKeywordTrend' para obtener su puntuación de tendencia (0-100) para el país '{{{country}}}'. Si la herramienta no devuelve datos, el campo 'trendScore' puede omitirse para esa palabra clave.
