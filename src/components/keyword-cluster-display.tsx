@@ -5,7 +5,8 @@ import type { GenerateKeywordClusterOutput, KeywordInfo } from "@/ai/flows/gener
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Brain, Network, SearchCheck } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Brain, HelpCircle, Network, SearchCheck, TrendingUp } from "lucide-react";
 
 interface KeywordClusterDisplayProps {
   clusterData: GenerateKeywordClusterOutput;
@@ -43,24 +44,73 @@ const KeywordSection: React.FC<KeywordSectionProps> = ({ title, keywords, icon: 
         </div>
       </AccordionTrigger>
       <AccordionContent>
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead className="font-semibold">Palabra Clave</TableHead>
-              <TableHead className="text-right font-semibold">Volumen de Búsqueda</TableHead>
-              <TableHead className="text-right font-semibold">Dificultad de Ranking</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {keywords.map((kw, index) => (
-              <TableRow key={index}>
-                <TableCell>{kw.keyword}</TableCell>
-                <TableCell className="text-right">{kw.searchVolume.toLocaleString()}</TableCell>
-                <TableCell className="text-right">{kw.rankingDifficulty}</TableCell>
+        <TooltipProvider>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead className="font-semibold">Palabra Clave</TableHead>
+                <TableHead className="text-right font-semibold">
+                  <div className="flex items-center justify-end">
+                    Volumen de Búsqueda
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <HelpCircle className="ml-1 h-4 w-4 text-muted-foreground cursor-help" />
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>Volumen de búsqueda mensual estimado.</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </div>
+                </TableHead>
+                <TableHead className="text-right font-semibold">
+                   <div className="flex items-center justify-end">
+                    Dificultad (0-100)
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <HelpCircle className="ml-1 h-4 w-4 text-muted-foreground cursor-help" />
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>Dificultad estimada para posicionar (0-100).</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </div>
+                </TableHead>
+                <TableHead className="text-right font-semibold">
+                  <div className="flex items-center justify-end">
+                    Tendencia (0-100)
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <HelpCircle className="ml-1 h-4 w-4 text-muted-foreground cursor-help" />
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>Puntuación de tendencia (0-100), si está disponible.</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </div>
+                </TableHead>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+            </TableHeader>
+            <TableBody>
+              {keywords.map((kw, index) => (
+                <TableRow key={index}>
+                  <TableCell>{kw.keyword}</TableCell>
+                  <TableCell className="text-right">{kw.searchVolume?.toLocaleString() ?? 'N/A'}</TableCell>
+                  <TableCell className="text-right">{kw.rankingDifficulty?.toString() ?? 'N/A'}</TableCell>
+                  <TableCell className="text-right">
+                    {kw.trendScore !== undefined ? (
+                      <div className="flex items-center justify-end">
+                        {kw.trendScore}
+                        <TrendingUp className="ml-1 h-4 w-4 text-green-500" />
+                      </div>
+                    ) : (
+                      'N/A'
+                    )}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TooltipProvider>
       </AccordionContent>
     </AccordionItem>
   );
